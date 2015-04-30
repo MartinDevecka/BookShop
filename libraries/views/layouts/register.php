@@ -81,8 +81,7 @@
         </nav>
         <header class="sb-page-header">
             <div class="container">
-                <h1>onlinelibrary.com</h1>
-                <p> Download your book. </p>
+                <h1><?php echo $data['title']; ?></h1>                
             </div>      
         </header>
 
@@ -94,3 +93,4 @@
         <script src="<?= $this->app->getBaseUrl(); ?>/web/js/bootstrap.min.js"></script>
     </body>
 </html>
+

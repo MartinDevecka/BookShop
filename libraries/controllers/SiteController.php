@@ -1,7 +1,5 @@
 <?php
 
-require_once('Controller.php');
-
 class SiteController extends Controller {
 
     public function actionIndex() {

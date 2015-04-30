@@ -1,5 +1,7 @@
 <?php
 
+// Basic configuration for database 
+
 $config['db']['host'] = 'localhost';
 $config['db']['name'] = 'root';
 $config['db']['password'] = '';

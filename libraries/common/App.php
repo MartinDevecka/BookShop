@@ -4,10 +4,9 @@ class App {
 
     private $controller;
 
-    public function getBaseUrl() {
-        return str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
-    }
-
+    /**
+     * Create application instance. Get controller and action from URL and run.
+     */
     public function __construct($config = array()) {
 
         $route = explode('/', $this->getRoute());
@@ -16,15 +15,25 @@ class App {
         $this->runController($controllerName, $actionName);
     }
 
+    /**
+     *  Get base url from apache global parameters. For example url localhost/project/controller/action would be tranlated to localhost/project
+     */
+    public function getBaseUrl() {
+        return str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
+    }
+
+    // get route from .htaccess generated "r" GET attribute
+
     private function getRoute() {
         return isset($_GET['r']) ? $_GET['r'] : false;
     }
+
+    // run the requested page from requested controller
 
     private function runController($name, $action) {
         $path = 'libraries/controllers/' . $name . '.php';
 
         if (!file_exists($path)) {
-
             header("HTTP/1.0 404 Not Found");
             echo "Page not found";
             die();

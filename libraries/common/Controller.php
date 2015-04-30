@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Base Controller class
+ */
+
 class Controller {
 
     public $name;
@@ -7,14 +11,16 @@ class Controller {
 
     public function __construct($appInstance) {
         $this->app = $appInstance;
-        // echo "running controller ".get_class($this);
     }
 
-    public function render($template) {
+    // render template file name into main layout
+
+    public function render($template, $data = '', $datalayout = 'main') {
         ob_start();
+        $data = $data;
         include(__DIR__ . '/../views/site/' . $template . '.php');
         $content = ob_get_clean();
-        include(__DIR__ . '/../views/layouts/main.php');
+        include(__DIR__ . '/../views/layouts/' . $datalayout . '.php');
     }
 }
 

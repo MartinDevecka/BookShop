@@ -2,7 +2,7 @@
     <div class="col-md-12">
 		
         <div style="width:600px; margin:auto">
-        <h2>Search for a car</h2>
+        <h2>Search for a book</h2>
         <div id="custom-search-input">
             <div class="input-group col-md-12">
                 <input type="text" class="form-control input-lg" placeholder="e.g.: tesla model s" />

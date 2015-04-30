@@ -1,6 +1,6 @@
 <?php
 
-//call
+// Find missing class in one of the specified locations
 
 function __autoload($classname) {
     $where = array(

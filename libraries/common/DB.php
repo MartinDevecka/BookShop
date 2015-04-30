@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Simple singleton class to provide database mysqli object
+ *
+ * use anywhere in the code like DB::getInstance()->query('SELECT ...');
+ */
+
 class DB {
 
     private static $connection;
@@ -17,7 +23,7 @@ class DB {
             );
         }
         return self::$connection;
-    } 
+    }
 }
 
 ?>

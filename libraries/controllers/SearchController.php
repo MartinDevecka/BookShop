@@ -8,7 +8,7 @@ class SearchController extends Controller {
 
     public function actionIndustry() {
         $this->render('industry');
-        
+
         Customer::insert('aaaaa', 'heslooo');
     }
 

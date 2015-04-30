@@ -1,5 +1,7 @@
 <?php 
 
+    // Model class for manipulation data from database
+
 	abstract class Model {
 
 		abstract public function tablename();
