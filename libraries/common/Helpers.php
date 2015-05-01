@@ -4,11 +4,41 @@
  * Common functions
  */
 class Helpers {
+    
+    /*
+     * REGISTER AND LOGIN FORM VALIDATIONS
+     */
+    
+    // name validation
+
+    public static function isValidName($name) {
+        if (!empty($_POST['name'])) {
+            return preg_match('/^([A-Z]{1}[a-z]+[\s]{1})+([A-Z]{1}[a-z]+[\s]{0})+$/', $name);
+        }
+    }
 
     // email validation
 
     public static function isValidEmail($email) {
-        return preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i', $email);
+        if (!empty($_POST['email'])) {
+            return preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $email);
+        }
+    }
+
+    // password validation
+
+    public static function isValidPassword($password) {
+        if (!empty($_POST['password'])) {
+            return preg_match('/^(?=.*[0-9])(?=.*[\W])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9\W]{5,})$/', $password);
+        }
+    }
+
+    // phone validation
+
+    public static function isValidPhone($phone) {
+        if (!empty($_POST['phone'])) {
+            return preg_match('/^\+?[0-9]{1,}(\s?-?[0-9]{1,})+(\s?-?[0-9]{1,}[\s]{0})+$/', $phone);
+        }
     }
 
     // format date from database format to local format. E.g. 2015-01-02 12:12:11 translates to 2.1.2015 12:12:11
