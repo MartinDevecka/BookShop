@@ -11,8 +11,6 @@
         <link href="<?= $this->app->getBaseUrl(); ?>/web/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?= $this->app->getBaseUrl(); ?>/web/css/site.css" rel="stylesheet">
         <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>/web/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>/web/js/custom.js"></script>
-
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -34,7 +32,7 @@
                     <a class="navbar-brand" href="<?= $this->app->getBaseUrl(); ?>">onlinelibrary.com</a>
                 </div>-->
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="<?= $this->app->getBaseUrl(); ?>search/books" title="#">
@@ -58,15 +56,20 @@
                         </li>
                         <li>
                             <a href="<?= $this->app->getBaseUrl(); ?>user/login">
-                                Log In
+                                Log In | Reg
                             </a>
-                        </li>                      
+                        </li>    
+                        <li>
+                            <a href="<?= $this->app->getBaseUrl(); ?>user/logout">
+                                Log Out
+                            </a>
+                        </li> 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <div class="collapse navbar-collapse navbar-ex1-collapse">                                                 
                             <form class="navbar-form" role="search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for book..." name="srch-term" id="srch-term">
+                                    <input type="text" class="form-control" placeholder="Search for book..." name="book_search" id="srch-term">
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                     </div>
@@ -85,10 +88,9 @@
                 <p> Download your book. </p>
             </div>      
         </header>
-
         <div class="container">
             <div class="row">
-                <?= $content; ?>
+                <?= $content; ?>              
             </div>
         </div>   
         <script src="<?= $this->app->getBaseUrl(); ?>/web/js/bootstrap.min.js"></script>

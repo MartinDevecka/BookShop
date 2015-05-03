@@ -11,7 +11,7 @@ class User {
         $insert_user = "INSERT INTO users (user_name, user_password, user_email, user_phone) VALUES ('$name',MD5('$password'),'$email','$phone')";
 
         if (DB::getInstance()->query($insert_user)) {
-            return 'Your registration was successful. Lets go to download your book.';
+            return 'Your registration was successful, redirecting to the home page...';
         } 
         //$customer_id = DB::getInstance()->insert_id;        
         //$query2 = "INSERT INTO customer_address (customer_first_name, customer_last_name, customer_street, customer_zip, customer_city) VALUES ('$email', MD5('$password'))";   
@@ -52,6 +52,7 @@ class User {
         }
     }
 }
+
 ?>
 
 
