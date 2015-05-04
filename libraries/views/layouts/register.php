@@ -69,7 +69,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <div class="collapse navbar-collapse navbar-ex1-collapse">                                                 
-                            <form class="navbar-form" role="search">
+                            <form class="navbar-form" role="search" method="post" action="<?= $this->app->getBaseUrl(); ?>book/search">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for book..." name="book_search" id="srch-term">
                                     <div class="input-group-btn">
