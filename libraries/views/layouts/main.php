@@ -5,13 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Bootstrap 101 Template</title>
+        <title>Books Eshop</title>
 
         <!-- Bootstrap -->
-        <link href="<?= $this->app->getBaseUrl(); ?>/web/css/bootstrap.min.css" rel="stylesheet">
-        <link href="<?= $this->app->getBaseUrl(); ?>/web/css/site.css" rel="stylesheet">
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>/web/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>/web/js/custom.js"></script>
+        <link href="<?= $this->app->getBaseUrl(); ?>web/css/bootstrap-main-template.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/custom.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,77 +20,88 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>  
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <!--<div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?= $this->app->getBaseUrl(); ?>">onlinelibrary.com</a>
-                </div>-->
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/books" title="#">
-                                Books
+    <body class="body">
+        <div class="navbar-wrapper">
+            <ul>
+                <li>
+                    <a href="<?= $this->app->getBaseUrl(); ?>user/login">
+                                Sign in
                             </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/offers">
-                                Offers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/contact">
-                                Contact
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
-                                Basket
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>user/login">
+                </li>
+                <li>
+                     <a href="<?= $this->app->getBaseUrl(); ?>user/login">
                                 Log In
                             </a>
-                        </li>                      
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <div class="collapse navbar-collapse navbar-ex1-collapse">                                                 
-                            <form class="navbar-form" role="search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for book..." name="srch-term" id="srch-term">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>                        
-                        </div>                      
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+                </li>
+                <li>
+                    <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
+                                Basket
+                            </a>
+                </li>
+             
+            </ul>
+            <!-- HTML for SEARCH BAR -->
+            <div id="tfheader" class="tfheader">
+                <form id="tfnewsearch" method="post" action="_blank">
+                    <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+                </form>
+                <div class="tfclear"></div>
             </div>
-            <!-- /.container -->
-        </nav>
-        <header class="sb-page-header">
-            <div class="container">
-                <h1>onlinelibrary.com</h1>
-                <p> Download your book. </p>
-            </div>      
-        </header>
-
-        <div class="container">
-            <div class="row">
-                <?= $content; ?>
-            </div>
-        </div>   
-        <script src="<?= $this->app->getBaseUrl(); ?>/web/js/bootstrap.min.js"></script>
+            
+        </div>
+        
+        <div class="bookshop-second-bg">
+        </div>    
+     
+        <div>
+            <ul id="menu-bar">
+                <li>
+                    <a href="<?= $this->app->getBaseUrl(); ?> /libraries/views/about.php">
+                               About
+                            </a>
+                </li>
+                      <li> 
+                          <a href="#">
+                                Books
+                            </a>
+                    <ul>
+                        <li>
+                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
+                                All
+                            </a>
+                        <li>
+                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
+                               Categories
+                            </a></li>
+                    </ul>
+                <li><a href="#">Discounts</a>
+                    <ul>
+                        <li>
+                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
+                                All
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
+                                Categories
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
+                               My books
+                            </a>
+                </li>
+                <li>
+                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
+                               Contact
+                            </a>
+                </li>
+                
+            </ul>
+        </div>
+        
+        
     </body>
 </html>
