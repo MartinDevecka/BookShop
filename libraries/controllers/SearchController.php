@@ -16,3 +16,5 @@ class SearchController extends Controller {
         $this->render('other');
     }
 }
+
+?>

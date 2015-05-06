@@ -47,24 +47,13 @@ if (!empty($data['success'])) {
         <tr></tr>
         <tr></tr>     
         <tr>
-            <td width="30%"></td>           
+            <td width="30%">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </td>           
             <td>
-                <button type="submit" class="btn btn-success">Submit</button> 
-                <!--<input type="submit" value="Submit"/>--> 
+                <a href="<?= $this->app->getBaseUrl(); ?>" class="btn btn-success" role="button">Or proceed to home page</a> 
             </td>
         </tr>
     </table>               
 </form>
-<!--<form method="post" action="<?= $this->app->getBaseUrl(); ?>/user/register">
-    Full name:
-    <input class="form-control" type="text" name="name"/>
-    Password:
-    <input class="form-control" type="password" name="password"/>
-    E-mail:
-    <input class="form-control" type="email" name="email"/>
-    Phone:
-    <input class="form-control" type="text" name="phone"/>   
-    </br>   
-    <input class="btn-danger" type="submit" value="Submit"/>
-</form>-->
 
