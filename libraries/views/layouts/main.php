@@ -9,10 +9,8 @@
 
         <!-- Bootstrap -->
         <link href="<?= $this->app->getBaseUrl(); ?>web/css/bootstrap-main-template.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/custom.js"></script>
-
+        
+        
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -32,13 +30,13 @@
                      <a href="<?= $this->app->getBaseUrl(); ?>user/login">
                                 Log In
                             </a>
-                </li>
-                <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
+                        </li>
+                        <li>
+                            <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
                                 Basket
                             </a>
-                </li>
-             
+                        </li>
+
             </ul>
             <!-- HTML for SEARCH BAR -->
             <div id="tfheader" class="tfheader">
@@ -46,7 +44,7 @@
                     <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
                 </form>
                 <div class="tfclear"></div>
-            </div>
+                                    </div>
             
         </div>
         
@@ -101,7 +99,6 @@
                 
             </ul>
         </div>
-        
         
     </body>
 </html>
