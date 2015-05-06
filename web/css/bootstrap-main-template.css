@@ -19,6 +19,7 @@ and open the template in the editor.
 	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 400;
         height: 100%;
+        width: 100%;
 }
 
 /*.header
@@ -29,7 +30,7 @@ and open the template in the editor.
 
 .navbar-wrapper {
     float: right;
-    position: fixed;
+    position: absolute;
     /*right: 5%;*/
     margin-top: 0%;
     margin-left: 58%;
@@ -38,6 +39,7 @@ and open the template in the editor.
 
 .navbar-wrapper ul {
     display: inline;
+    position: relative;
 }
 
 .navbar-wrapper li {
@@ -45,20 +47,22 @@ and open the template in the editor.
     margin-right: 10px;
     vertical-align: sub;
 }
-
+/*
 .navbar-form
 {
 	border-bottom: 1px solid transparent;
 	border-top: 1px solid transparent;
 	box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
 	webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
-}
-
+}*/
+/*
 .input-group
 {
 	margin: 30px auto 0;
 	max-width: 500px;
-}
+        position: relative;
+        margin-top: 0%;
+}*/
 
 .bookshop-second-bg {
     background-image: url(/images/book-shop2.jpg);
@@ -66,7 +70,7 @@ and open the template in the editor.
     height: 1000px;
     width: 90%;
     background-size: contain;
-    position: fixed;
+    position: absolute;
     /*background-position-y: 36px;*/
     margin-left: 4.5%;
     margin-right: 4.5%;
@@ -143,7 +147,7 @@ and open the template in the editor.
   z-index:999;
   
    background-size: contain;
-    position: fixed;
+    position: absolute;
     
 }
 #menu-bar li {
