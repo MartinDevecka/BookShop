@@ -39,7 +39,7 @@ class User {
         extract($data);
         
         // New user cannot be registered if E-mail or password are identical with the existing one in the database.
-        $verify_user = "SELECT * FROM users WHERE user_email = '" . $email . "' OR user_password = MD5('" . $password . "')";
+        $verify_user = "SELECT * FROM users WHERE user_email = '" . $email . "'";
 
         if ($result = DB::getInstance()->query($verify_user)) {
             if ($result->num_rows == 0) {

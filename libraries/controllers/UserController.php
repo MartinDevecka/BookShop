@@ -22,7 +22,7 @@ class UserController extends Controller {
                         $datapost['success'] = User::insertUser($_POST);
                         $this->render('userLogoutForm', $datapost, 'main');
                     } else{
-                        $datapost['error'] = 'User already exists. Please repeat your registration (change your E-mail or password).';
+                        $datapost['error'] = 'User already exists. Please repeat your registration (change your E-mail).';
                         $this->render('userRegisterForm', $datapost, 'register');
                     }                
                 } else {
