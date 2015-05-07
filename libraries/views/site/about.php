@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,18 +14,9 @@
 
         <!-- Bootstrap -->
         <link href="<?= $this->app->getBaseUrl(); ?>web/css/bootstrap-main-template.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/custom.js"></script>
-        
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <title></title>
     </head>
-    <body class="body">
+         <body class="body">
         <div class="navbar-wrapper">
             <ul>
                 <li>
@@ -32,13 +28,13 @@
                      <a href="<?= $this->app->getBaseUrl(); ?>user/login">
                                 Log In
                             </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
+                </li>
+                <li>
+                    <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
                                 Basket
                             </a>
-                        </li>
-
+                </li>
+             
             </ul>
             <!-- HTML for SEARCH BAR -->
             <div id="tfheader" class="tfheader">
@@ -46,7 +42,7 @@
                     <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
                 </form>
                 <div class="tfclear"></div>
-                                    </div>
+            </div>
             
         </div>
         
@@ -56,7 +52,7 @@
         <div>
             <ul id="menu-bar">
                 <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?> /libraries/views/about.php">
+                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
                                About
                             </a>
                 </li>

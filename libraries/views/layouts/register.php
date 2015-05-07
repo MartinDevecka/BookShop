@@ -8,10 +8,11 @@
         <title>Bootstrap 101 Template</title>
 
         <!-- Bootstrap -->
-        <link href="<?= $this->app->getBaseUrl(); ?>/web/css/bootstrap.min.css" rel="stylesheet">
-        <link href="<?= $this->app->getBaseUrl(); ?>/web/css/site.css" rel="stylesheet">
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>/web/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>/web/js/custom.js"></script>
+        <link href="<?= $this->app->getBaseUrl(); ?>web/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?= $this->app->getBaseUrl(); ?>web/css/site.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/custom.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -94,8 +95,8 @@
             <div class="row">
                 <?= $content; ?>
             </div>
-        </div>   
-        <script src="<?= $this->app->getBaseUrl(); ?>/web/js/bootstrap.min.js"></script>
+        </div> 
+        <script src="<?= $this->app->getBaseUrl(); ?>web/js/bootstrap.min.js"></script>
     </body>
 </html>
 
