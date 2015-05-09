@@ -2,8 +2,10 @@
 
 class Admin {
     
-    /**************************************************************************************************************
+    /*
+     * *************************************************************************************************************
      * Category add, select, edit, delete (CRUD)
+     * *************************************************************************************************************
      */
 
     public static function categoryAdd($data) {
@@ -68,7 +70,7 @@ class Admin {
                 . "category_image='" . $category_image . "' "
                 . "WHERE id_category='" . $id . "';";
 
-        return DB::getInstance()->query($category_delete);
+        return DB::getInstance()->query($category_edit);
     }
 
     public static function categoryDelete($id) {
@@ -79,35 +81,35 @@ class Admin {
         return DB::getInstance()->query($category_delete);
     }
     
-    /**************************************************************************************************************
+    /*
+     * *************************************************************************************************************
      * Author add, select, edit, delete (CRUD)
+     * *************************************************************************************************************
      */
 
     public static function authorAdd($data) {
 
         extract($data);
 
-        $category_add = "INSERT INTO authors "
-                . "(category_name, category_image) "
-                . "VALUES ('" . $category_name . "', '" . $category_image . "');";
+        $author_add = "INSERT INTO authors "
+                . "(author_name) "
+                . "VALUES ('" . $author_name . "');";
 
-        return DB::getInstance()->query($category_add);
+        return DB::getInstance()->query($author_add);
     }
 
     public static function authorSelect($data) {
 
         extract($data);
 
-        $category_select = "SELECT "
-                . "id_category, "
-                . "category_name, "
-                . "category_image "
-                . "FROM categories "
-                . "WHERE category_name LIKE='%" . $category_name . "%' "
-                . "OR category_image LIKE='%" . $category_image . "%' "
-                . "ORDER BY id_category;";
+        $author_select = "SELECT "
+                . "id_author, "
+                . "author_name "             
+                . "FROM authors "
+                . "WHERE author_name LIKE='%" . $author_name . "%' "           
+                . "ORDER BY id_author;";
 
-        if ($result = DB::getInstance()->query($category_select)) {
+        if ($result = DB::getInstance()->query($author_select)) {
             if ($result->num_rows > 0) {
                 return $result->fetch_all(MYSQLI_ASSOC);
             } else {
@@ -139,25 +141,26 @@ class Admin {
 
     public static function authorEdit($id) {
 
-        $category_edit = "UPDATE categories "
+        $author_edit = "UPDATE authors "
                 . "SET "
-                . "category_name='" . $category_name . "', "
-                . "category_image='" . $category_image . "' "
-                . "WHERE id_category='" . $id . "';";
+                . "author_name='" . $author_name . "' "              
+                . "WHERE id_author='" . $id . "';";
 
-        return DB::getInstance()->query($category_delete);
+        return DB::getInstance()->query($author_edit);
     }
 
     public static function authorDelete($id) {
 
-        $category_delete = "DELETE FROM categories "
-                . "WHERE id_category='" . $id . "';";
+        $author_delete = "DELETE FROM authors "
+                . "WHERE id_author='" . $id . "';";
 
-        return DB::getInstance()->query($category_delete);
+        return DB::getInstance()->query($author_delete);
     }       
     
     /*
+     * *************************************************************************************************************
      * Book add, select, edit, delete (CRUD)
+     * *************************************************************************************************************
      */
 
     public static function bookAdd($data) {
@@ -165,26 +168,62 @@ class Admin {
         extract($data);
 
         $book_add = "INSERT INTO books "
-                . "(id_author, id_category, book_title, book_subject, book_image, book_ISBN, book_price, book_discount) "
-                . "VALUES ('" . $author . "', '" . $category . "');";
+                . "(id_author, id_category, book_title, book_subject, book_image, book_ISBN, book_price, book_discount, book_path) "
+                . "VALUES ('" . $author . "', '" . $category . "', '" . $title . "', '" . $subject . "', '" . $image . "', '" . $isbn . "', '" . $price . "', '" . $discount . "', '" . $path . "');";
 
         return DB::getInstance()->query($book_add);
     }
 
-    public static function bookSelect($data) {
+    public static function bookSelect() {     
 
-        extract($data);
-
-        $category_select = "SELECT "
+        $book_select = "SELECT "
+                . "id_book, "
+                . "id_author, "
                 . "id_category, "
-                . "category_name, "
-                . "category_image "
-                . "FROM categories "
-                . "WHERE category_name LIKE='%" . $category_name . "%' "
-                . "OR category_image LIKE='%" . $category_image . "%' "
-                . "ORDER BY id_category;";
+                . "book_title, "
+                . "book_subject, "
+                . "book_image, "
+                . "book_ISBN, "
+                . "book_price, "
+                . "book_discount, "
+                . "book_path "              
+                . "FROM books "             
+                . "ORDER BY id_book;";
 
-        if ($result = DB::getInstance()->query($category_select)) {
+        if ($result = DB::getInstance()->query($book_select)) {
+            if ($result->num_rows > 0) {  
+                $book_list = array();
+                while($row = mysql_fetch_array($result)) { 
+                    $book_list[]= array(
+                    'id_book'=> $row['id_book'],
+                    'id_author'=> $row['id_author'],
+                    'id_category'=> $row['id_category'],
+                    'book_title'=> $row['book_title'],
+                    'book_subject'=> $row['book_subject'], 
+                    'book_image'=> $row['book_image'], 
+                    'book_ISBN'=> $row['book_ISBN'],  
+                    'book_price'=> $row['book_price'],  
+                    'book_discount'=> $row['book_discount'],
+                    'book_path'=> $row['book_path']);
+                    return $book_list->fetch_all(MYSQLI_ASSOC);
+                }           
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    public static function bookSelectCombo() {      
+
+        $book_select = "SELECT "
+                . "id_book, "
+                . "book_title "               
+                . "FROM books "               
+                . "ORDER BY id_book;";
+
+        if ($result = DB::getInstance()->query($book_select)) {
             if ($result->num_rows > 0) {
                 return $result->fetch_all(MYSQLI_ASSOC);
             } else {
@@ -193,25 +232,32 @@ class Admin {
         } else {
             return false;
         }
-    }
+    }  
 
     public static function bookEdit($id) {
 
-        $category_edit = "UPDATE categories "
+        $book_edit = "UPDATE books "
                 . "SET "
-                . "category_name='" . $category_name . "', "
-                . "category_image='" . $category_image . "' "
-                . "WHERE id_category='" . $id . "';";
+                . "id_author='" . $id_author . "', "
+                . "id_category='" . $id_category . "', "
+                . "book_title='" . $book_title . "', "
+                . "book_subject='" . $book_subject . "', "
+                . "book_image='" . $book_image . "', "
+                . "book_ISBN='" . $book_ISBN . "', "
+                . "book_price='" . $book_price . "', "
+                . "book_discount='" . $book_discount . "', "
+                . "book_path='" . $book_path . "' "                
+                . "WHERE id_book='" . $id . "';";
 
-        return DB::getInstance()->query($category_delete);
+        return DB::getInstance()->query($book_edit);
     }
 
     public static function bookDelete($id) {
 
-        $category_delete = "DELETE FROM categories "
-                . "WHERE id_category='" . $id . "';";
+        $book_delete = "DELETE FROM books "
+                . "WHERE id_book='" . $id . "';";
 
-        return DB::getInstance()->query($category_delete);
+        return DB::getInstance()->query($book_delete);
     }
 }
 ?>

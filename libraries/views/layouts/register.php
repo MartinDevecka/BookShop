@@ -66,7 +66,7 @@
                             <a href="<?= $this->app->getBaseUrl(); ?>user/logout">
                                 Log Out
                             </a>
-                        </li> 
+                        </li>                  
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <div class="collapse navbar-collapse navbar-ex1-collapse">                                                 
