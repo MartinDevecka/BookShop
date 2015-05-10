@@ -7,14 +7,14 @@ if (!empty($data['success'])) {
 }   
 
 ?>
-<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/addbook" enctype="multipart/form-data"> 
+<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/editbook" enctype="multipart/form-data"> 
     <table class="table-borderless" style="border-collapse: separate; border-spacing: 3px;">
         <tr>
             <td width="30%">
                 Category:
             </td>                   
             <td>
-                <?php echo $data['categories']; ?>
+                <input type="text" name="id_category" value="'<?php= echo $data['categories']; ?>'"/>                 
             </td>                                    
         </tr>
         <tr>
@@ -22,7 +22,7 @@ if (!empty($data['success'])) {
                 Author:
             </td>          
             <td>
-                <?php echo $data['authors']; ?> 
+                <input type="text" name="id_author" value="'<?php= echo $data['authors']; ?>'"/>               
             </td>
         </tr>
         <tr>
@@ -30,7 +30,7 @@ if (!empty($data['success'])) {
                 Title:
             </td>           
             <td>
-                <input class="form-control" type="text" name="title"/> 
+                <input type="text" name="book_title" value="'<?php= echo $data['book_title']; ?>'"/>                
             </td>
         </tr>
         <tr>
@@ -38,7 +38,7 @@ if (!empty($data['success'])) {
                 ISBN:
             </td>           
             <td>
-                <input class="form-control" type="text" name="isbn"/> 
+                <input type="text" name="book_ISBN" value="'<?php= echo $data['book_ISBN']; ?>'"/>                 
             </td>
         </tr>
         <tr>
@@ -46,7 +46,7 @@ if (!empty($data['success'])) {
                 Price:
             </td>           
             <td>
-                <input class="form-control" type="text" name="price"/> 
+                <input type="text" name="book_price" value="'<?php= echo $data['book_price']; ?>'"/>                
             </td>
         </tr>
         <tr>
@@ -54,7 +54,7 @@ if (!empty($data['success'])) {
                 Discount:
             </td>           
             <td>
-                <input class="form-control" type="text" name="discount"/> 
+                <input type="text" name="book_discount" value="'<?php= echo $data['book_discount']; ?>'"/>                
             </td>
         </tr>
         <tr>
@@ -62,7 +62,7 @@ if (!empty($data['success'])) {
                 Subject:
             </td>           
             <td>
-                <input class="form-control" type="text" name="subject"/> 
+                <input type="text" name="book_subject" value="'<?php= echo $data['book_subject']; ?>'"/>               
             </td>
         </tr>
         <tr>
@@ -70,8 +70,7 @@ if (!empty($data['success'])) {
                 Image:
             </td>           
             <td> 
-                <input class="form-control" type="text" name="image"/> 
-                <!--<input class="btn btn-success" type="file" name="image" id="image" value="Add image"/>--> 
+                <input type="text" name="book_image" value="'<?php= echo $data['book_image']; ?>'"/>
             </td>
         </tr>
         <tr>
@@ -79,8 +78,7 @@ if (!empty($data['success'])) {
                 Path:
             </td>           
             <td>    
-                <input class="form-control" type="text" name="path"/> 
-                <!--<input class="btn btn-success" type="file" name="path" id="path" value="Add book"/>--> 
+                <input type="text" name="book_path" value="'<?php= echo $data['book_path']; ?>'"/> 
             </td>
         </tr>
         <tr></tr>
@@ -89,10 +87,11 @@ if (!empty($data['success'])) {
         <tr></tr>
         <tr></tr>     
         <tr>
-            <td width="30%">              
+            <td width="30%">                 
+                <button type="submit" class="btn btn-success">Save</button>
             </td>           
             <td>
-                <button type="submit" class="btn btn-success">Add</button> 
+                <a href="<?= $this->app->getBaseUrl() ?>/admin/findbook/" class="btn btn-danger" role="button">Cancel</a> 
             </td>
         </tr>
     </table>               
