@@ -8,7 +8,6 @@ class App {
      * Create application instance. Get controller and action from URL and run.
      */
     public function __construct($config = array()) {
-
         $route = explode('/', $this->getRoute());
         $controllerName = isset($route[0]) && $route[0] ? ucfirst($route[0]) . 'Controller' : 'SiteController';
         $actionName = isset($route[1]) && $route[1] ? 'action' . $route[1] : 'actionIndex';

@@ -3,6 +3,7 @@
 class User {
 
     public $name;
+    private static $id_user = 1;
 
     public static function insertUser($data) {
 
@@ -21,10 +22,11 @@ class User {
 
         extract($data);
 
-        $verify_user = "SELECT * FROM users WHERE user_email = '" . $email . "' AND user_password = MD5('" . $password . "')";
+        $verify_user = "SELECT id_user FROM users WHERE user_email = '" . $email . "' AND user_password = MD5('" . $password . "')";
 
         if ($result = DB::getInstance()->query($verify_user)) {
             if ($result->num_rows > 0) {
+                self::$id_user = $result->fetch_row()[0];
                 return true;
             } else {
                 return false;
@@ -50,6 +52,30 @@ class User {
         } else {
             return false;
         }
+    }
+    
+    public static function GetUserDetails($userId)
+    {
+        $userDetails = 'SELECT user_name, user_email, user_phone FROM users WHERE id_user = ' . $userId . ';';
+        if($result = DB::getInstance()->query($userDetails))
+            if($result->num_rows > 0)
+            {
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else
+            {
+                return false;
+            }
+    }
+    
+    public static function GetUserName($userId)
+    {
+        return self::GetUserDetails($userId)[0]['user_name'];
+    }
+    
+    public static function GetUserId()
+    {
+        return self::$id_user;
     }
 }
 

@@ -555,3 +555,16 @@ footer .footer-left,footer .footer-right,footer .footer-below
 {
 	margin-top: 30px;
 }
+
+#content, #categoryContent
+{
+    width: 89%;
+}
+
+.categoryListItem{
+    width: 25%;
+}
+
+.basketListItem{
+    width: 33.333333%;
+}

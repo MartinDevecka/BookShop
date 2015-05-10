@@ -1,14 +1,16 @@
 <?php
 
+session_start();
+
 class SiteController extends Controller {
 
     public function actionIndex() {
-        // echo "som v indexe";
-        $this->render('index');
+        $this->render('slider');
     }
-
-    public function actionFile2() {
-        $this->render('file2');
+    
+    public function actionAbout()
+    {
+        $this->render('about');
     }
 }
 
