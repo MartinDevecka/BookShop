@@ -41,7 +41,7 @@
                             <a class="dropdown-toggle" aria-expanded="false" data-toggle="dropdown">Book<b class="caret"></b></a>                          
                             <ul class="dropdown-menu dropdown-menu-arrow" role="menu">
                                 <li><a href="<?= $this->app->getBaseUrl(); ?>admin/addbook">Add</a></li>
-                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/editdelete">Edit/Delete</a></li>              
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/editdeletebook">Edit/Delete</a></li>              
                             </ul>
                         </li>                          
                         <li>

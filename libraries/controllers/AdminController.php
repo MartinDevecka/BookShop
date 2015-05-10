@@ -36,22 +36,39 @@ class AdminController extends Controller {
         }
     }
     
-     public function actionEditBook() {             
+     public function actionEditDeleteBook() {             
        
-        $book_select = Admin::bookSelect();               
+        $book_select = Admin::bookSelectAll();         
 
         $datapost['error'] = '';
         $datapost['success'] = '';
         $datapost['title'] = 'Edit/Delete Book';
-        $datapost['book_select'] = $book_select;
-         
+        $datapost['book_select'] = $book_select;     
         
-        if (!empty($_POST['ci'])) {      
+        if (!empty($_POST['select'])) {      
+            Admin::bookSelect($_POST);  
+            $datapost['success'] = 'Select book success...';
+            $this->render('adminEditBook', $datapost, 'register');
+        } else {
+            $datapost['error'] = 'Select book failed...';
+            $this->render('adminEditBook', $datapost, 'register');  
+        }
+        
+        if (!empty($_POST['edit'])) {      
             Admin::bookEdit($_POST);  
             $datapost['success'] = 'Edit book success...';
             $this->render('adminEditBook', $datapost, 'register');
         } else {
             $datapost['error'] = 'Edit book failed...';
+            $this->render('adminEditBook', $datapost, 'register');  
+        }
+        
+        if (!empty($_POST['delete'])) {      
+            Admin::bookDelete($_POST);  
+            $datapost['success'] = 'Delete book success...';
+            $this->render('adminEditBook', $datapost, 'register');
+        } else {
+            $datapost['error'] = 'Delete book failed...';
             $this->render('adminEditBook', $datapost, 'register');  
         }
               

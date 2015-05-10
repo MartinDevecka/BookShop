@@ -1,7 +1,6 @@
 <?php
 
 class Admin {
-    
     /*
      * *************************************************************************************************************
      * Category add, select, edit, delete (CRUD)
@@ -42,13 +41,13 @@ class Admin {
             return false;
         }
     }
-    
-    public static function categorySelectCombo() {      
+
+    public static function categorySelectCombo() {
 
         $category_select = "SELECT "
                 . "id_category, "
-                . "category_name "               
-                . "FROM categories "               
+                . "category_name "
+                . "FROM categories "
                 . "ORDER BY id_category;";
 
         if ($result = DB::getInstance()->query($category_select)) {
@@ -60,7 +59,7 @@ class Admin {
         } else {
             return false;
         }
-    }      
+    }
 
     public static function categoryEdit($id) {
 
@@ -80,7 +79,7 @@ class Admin {
 
         return DB::getInstance()->query($category_delete);
     }
-    
+
     /*
      * *************************************************************************************************************
      * Author add, select, edit, delete (CRUD)
@@ -104,9 +103,9 @@ class Admin {
 
         $author_select = "SELECT "
                 . "id_author, "
-                . "author_name "             
+                . "author_name "
                 . "FROM authors "
-                . "WHERE author_name LIKE='%" . $author_name . "%' "           
+                . "WHERE author_name LIKE='%" . $author_name . "%' "
                 . "ORDER BY id_author;";
 
         if ($result = DB::getInstance()->query($author_select)) {
@@ -119,13 +118,13 @@ class Admin {
             return false;
         }
     }
-    
-    public static function authorSelectCombo() {      
+
+    public static function authorSelectCombo() {
 
         $author_select = "SELECT "
                 . "id_author, "
-                . "author_name "               
-                . "FROM authors "               
+                . "author_name "
+                . "FROM authors "
                 . "ORDER BY id_author;";
 
         if ($result = DB::getInstance()->query($author_select)) {
@@ -137,13 +136,13 @@ class Admin {
         } else {
             return false;
         }
-    }    
+    }
 
     public static function authorEdit($id) {
 
         $author_edit = "UPDATE authors "
                 . "SET "
-                . "author_name='" . $author_name . "' "              
+                . "author_name='" . $author_name . "' "
                 . "WHERE id_author='" . $id . "';";
 
         return DB::getInstance()->query($author_edit);
@@ -155,8 +154,8 @@ class Admin {
                 . "WHERE id_author='" . $id . "';";
 
         return DB::getInstance()->query($author_delete);
-    }       
-    
+    }
+
     /*
      * *************************************************************************************************************
      * Book add, select, edit, delete (CRUD)
@@ -174,7 +173,7 @@ class Admin {
         return DB::getInstance()->query($book_add);
     }
 
-    public static function bookSelect() {     
+    public static function bookSelectAll() {
 
         $book_select = "SELECT "
                 . "id_book, "
@@ -186,41 +185,8 @@ class Admin {
                 . "book_ISBN, "
                 . "book_price, "
                 . "book_discount, "
-                . "book_path "              
-                . "FROM books "             
-                . "ORDER BY id_book;";
-
-        if ($result = DB::getInstance()->query($book_select)) {
-            if ($result->num_rows > 0) {  
-                $book_list = array();
-                while($row = mysql_fetch_array($result)) { 
-                    $book_list[]= array(
-                    'id_book'=> $row['id_book'],
-                    'id_author'=> $row['id_author'],
-                    'id_category'=> $row['id_category'],
-                    'book_title'=> $row['book_title'],
-                    'book_subject'=> $row['book_subject'], 
-                    'book_image'=> $row['book_image'], 
-                    'book_ISBN'=> $row['book_ISBN'],  
-                    'book_price'=> $row['book_price'],  
-                    'book_discount'=> $row['book_discount'],
-                    'book_path'=> $row['book_path']);
-                    return $book_list->fetch_all(MYSQLI_ASSOC);
-                }           
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-    
-    public static function bookSelectCombo() {      
-
-        $book_select = "SELECT "
-                . "id_book, "
-                . "book_title "               
-                . "FROM books "               
+                . "book_path "
+                . "FROM books "
                 . "ORDER BY id_book;";
 
         if ($result = DB::getInstance()->query($book_select)) {
@@ -232,7 +198,53 @@ class Admin {
         } else {
             return false;
         }
-    }  
+    }
+    
+    public static function bookSelect($id) {
+
+        $book_select = "SELECT "
+                . "id_book, "
+                . "id_author, "
+                . "id_category, "
+                . "book_title, "
+                . "book_subject, "
+                . "book_image, "
+                . "book_ISBN, "
+                . "book_price, "
+                . "book_discount, "
+                . "book_path "
+                . "FROM books "
+                . "WHERE id_book='" . $id . "';";
+
+        if ($result = DB::getInstance()->query($book_select)) {
+            if ($result->num_rows > 0) {
+                return $result->fetch_all(MYSQLI_ASSOC);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public static function bookSelectCombo() {
+
+        $book_select = "SELECT "
+                . "id_book, "
+                . "book_title "
+                . "FROM books "
+                . "ORDER BY id_book;";
+
+        if ($result = DB::getInstance()->query($book_select)) {
+            if ($result->num_rows > 0) {
+                return $result->fetch_all(MYSQLI_ASSOC);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 
     public static function bookEdit($id) {
 
@@ -246,7 +258,7 @@ class Admin {
                 . "book_ISBN='" . $book_ISBN . "', "
                 . "book_price='" . $book_price . "', "
                 . "book_discount='" . $book_discount . "', "
-                . "book_path='" . $book_path . "' "                
+                . "book_path='" . $book_path . "' "
                 . "WHERE id_book='" . $id . "';";
 
         return DB::getInstance()->query($book_edit);
