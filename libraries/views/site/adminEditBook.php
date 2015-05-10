@@ -15,7 +15,7 @@ if (!empty($data['success'])) {
         }
     }
 </script>
-<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/editdeletebook">
+<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/findbook">
     <table class="table-borderless" style="border-collapse: separate; border-spacing: 3px;">
         <thead>
             <tr>
@@ -51,10 +51,10 @@ if (!empty($data['success'])) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data['book_select'] as $select) : ?>
+            <?php foreach ($data['book_select_all'] as $select) : ?>
                 <tr>
                     <td>
-                        <?php echo $select['id_category']; ?>
+                        <?php echo $select['id_category']; ?>                     
                     </td>
                     <td>
                         <?php echo $select['id_author']; ?>
@@ -81,25 +81,15 @@ if (!empty($data['success'])) {
                         <?php echo $select['book_path']; ?>
                     </td>
                     <td>
-                        <form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/editdeletebook" name="select">                         
-                            <input type="hidden" name="edit" value="<?php echo $select['id_book']; ?>" />
-                            <input type="hidden" name="action" value="edit" />
-                            <input type="submit" value="Edit" />
-                        </form> 
+                        <a href="<?= $this->app->getBaseUrl(); ?>/admin/editbook/<?= $select['id_book']; ?>" class="btn btn-success" role="button">Edit</a>
                     </td>
-                    <td>
-                        <form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/editdeletebook" name="delete"
-                              onSubmit="return ConfirmDelete();">
-                            <input type="hidden" name="delete" value="<?php echo $select['id_book']; ?>" />
-                            <input type="hidden" name="action" value="delete" />
-                            <input type="submit" value="Delete" />
-                        </form>
+                    <td>                        
+                        <a href="<?= $this->app->getBaseUrl(); ?>/admin/deletebook/<?= $select['id_book']; ?>" class="btn btn-danger" role="button" onClick="return ConfirmDelete();">Delete</a>
                     </td>
                 <tr>
             <?php endforeach; ?>
         </tbody>
-    </table><br/>
-    <!--<a href="update.php" class="link-btn">Add Contact</a>-->	
+    </table>	
 </form>
 
 

@@ -173,9 +173,9 @@ class Admin {
         return DB::getInstance()->query($book_add);
     }
 
-    public static function bookSelectAll() {
+    public static function bookSelectAll() {          
 
-        $book_select = "SELECT "
+        $book_select_all = "SELECT "
                 . "id_book, "
                 . "id_author, "
                 . "id_category, "
@@ -189,7 +189,7 @@ class Admin {
                 . "FROM books "
                 . "ORDER BY id_book;";
 
-        if ($result = DB::getInstance()->query($book_select)) {
+        if ($result = DB::getInstance()->query($book_select_all)) {
             if ($result->num_rows > 0) {
                 return $result->fetch_all(MYSQLI_ASSOC);
             } else {
@@ -246,8 +246,10 @@ class Admin {
         }
     }
 
-    public static function bookEdit($id) {
-
+    public static function bookEdit($data) {
+        
+        extract($data);
+        
         $book_edit = "UPDATE books "
                 . "SET "
                 . "id_author='" . $id_author . "', "
@@ -259,7 +261,7 @@ class Admin {
                 . "book_price='" . $book_price . "', "
                 . "book_discount='" . $book_discount . "', "
                 . "book_path='" . $book_path . "' "
-                . "WHERE id_book='" . $id . "';";
+                . "WHERE id_book='" . $id_book . "';";
 
         return DB::getInstance()->query($book_edit);
     }
