@@ -113,6 +113,5 @@
             var slider = new Bs.Slider();
             slider.slide();
         </script>
-
     </body>
 </html>

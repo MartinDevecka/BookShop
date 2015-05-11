@@ -14,7 +14,7 @@ if (!empty($data['success'])) {
                 Category:
             </td>                   
             <td>
-                <input type="text" name="id_category" value="'<?php= echo $data['categories']; ?>'"/>                 
+                <?php echo $data['categories']; ?>                
             </td>                                    
         </tr>
         <tr>
@@ -22,7 +22,7 @@ if (!empty($data['success'])) {
                 Author:
             </td>          
             <td>
-                <input type="text" name="id_author" value="'<?php= echo $data['authors']; ?>'"/>               
+                <?php echo $data['authors']; ?>               
             </td>
         </tr>
         <tr>
@@ -30,7 +30,7 @@ if (!empty($data['success'])) {
                 Title:
             </td>           
             <td>
-                <input type="text" name="book_title" value="'<?php= echo $data['book_title']; ?>'"/>                
+                <input type="text" name="book_title" value="<?php echo $data['book'][0]['book_title']; ?>"/>                
             </td>
         </tr>
         <tr>
@@ -38,7 +38,7 @@ if (!empty($data['success'])) {
                 ISBN:
             </td>           
             <td>
-                <input type="text" name="book_ISBN" value="'<?php= echo $data['book_ISBN']; ?>'"/>                 
+                <input type="text" name="book_ISBN" value="<?php echo $data['book'][0]['book_ISBN']; ?>"/>                 
             </td>
         </tr>
         <tr>
@@ -46,7 +46,7 @@ if (!empty($data['success'])) {
                 Price:
             </td>           
             <td>
-                <input type="text" name="book_price" value="'<?php= echo $data['book_price']; ?>'"/>                
+                <input type="text" name="book_price" value="<?php echo $data['book'][0]['book_price']; ?>"/>                
             </td>
         </tr>
         <tr>
@@ -54,7 +54,7 @@ if (!empty($data['success'])) {
                 Discount:
             </td>           
             <td>
-                <input type="text" name="book_discount" value="'<?php= echo $data['book_discount']; ?>'"/>                
+                <input type="text" name="book_discount" value="<?php echo $data['book'][0]['book_discount']; ?>"/>                
             </td>
         </tr>
         <tr>
@@ -62,7 +62,7 @@ if (!empty($data['success'])) {
                 Subject:
             </td>           
             <td>
-                <input type="text" name="book_subject" value="'<?php= echo $data['book_subject']; ?>'"/>               
+                <input type="text" name="book_subject" value="<?php echo $data['book'][0]['book_subject']; ?>"/>               
             </td>
         </tr>
         <tr>
@@ -70,7 +70,7 @@ if (!empty($data['success'])) {
                 Image:
             </td>           
             <td> 
-                <input type="text" name="book_image" value="'<?php= echo $data['book_image']; ?>'"/>
+                <input type="text" name="book_image" value="<?php echo $data['book'][0]['book_image']; ?>"/>
             </td>
         </tr>
         <tr>
@@ -78,7 +78,7 @@ if (!empty($data['success'])) {
                 Path:
             </td>           
             <td>    
-                <input type="text" name="book_path" value="'<?php= echo $data['book_path']; ?>'"/> 
+                <input type="text" name="book_path" value="<?php echo $data['book'][0]['book_path']; ?>"/> 
             </td>
         </tr>
         <tr></tr>
