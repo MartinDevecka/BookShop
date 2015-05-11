@@ -39,7 +39,7 @@ class Helpers {
         if (!empty($_POST['phone'])) {
             return preg_match('/^\+?[0-9]{1,}(\s?-?[0-9]{1,})+(\s?-?[0-9]{1,}[\s]{0})+$/', $phone);
         }
-    }
+    }  
 
     // format date from database format to local format. E.g. 2015-01-02 12:12:11 translates to 2.1.2015 12:12:11
 
