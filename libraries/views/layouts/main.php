@@ -67,7 +67,7 @@
                     <a href="<?= $this->app->getBaseUrl(); ?>site/about#showRedirect">About</a>
                 </li>
                 <li> 
-                    <a href="#">Books</a>
+                    <a href="<?= $this->app->getBaseUrl(); ?>book/allbooks#showRedirect">Books</a>
                     <ul>
                         <li>
                             <a href="<?= $this->app->getBaseUrl(); ?>book/allbooks#showRedirect">All</a>
@@ -75,22 +75,12 @@
                         <li>
                             <a href="<?= $this->app->getBaseUrl(); ?>book/categories#showRedirect" >Categories</a>
                         </li>
-                    </ul>
-                <li><a href="#">Discounts</a>
-                    <ul>
                         <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">All</a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">Categories</a>
-                        </li>
+                            <a href="<?= $this->app->getBaseUrl(); ?>book/allfreebooks#showRedirect">Free</a></li>
                     </ul>
-                </li>
+                <li><a href="<?= $this->app->getBaseUrl(); ?>book/alldiscountbooks#showRedirect">Discounts</a></li>
                 <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">My books</a>
-                </li>
-                <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">Contact</a>
+                    <a href="<?= $this->app->getBaseUrl(); ?>site/contact">Contact</a>
                 </li>
 
             </ul>

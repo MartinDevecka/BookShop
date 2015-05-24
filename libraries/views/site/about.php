@@ -14,90 +14,29 @@ and open the template in the editor.
 
         <!-- Bootstrap -->
         <link href="<?= $this->app->getBaseUrl(); ?>web/css/bootstrap-main-template.css" rel="stylesheet">
-        <title></title>
+        <title>About</title>
     </head>
          <body class="body">
-        <div class="navbar-wrapper">
-            <ul>
-                <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>user/login">
-                                Sign in
-                            </a>
-                </li>
-                <li>
-                     <a href="<?= $this->app->getBaseUrl(); ?>user/login">
-                                Log In
-                            </a>
-                </li>
-                <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
-                                Basket
-                            </a>
-                </li>
+             <span> 
+                 
+                 
+                 <div class="divabout">
+                 <img src="<?= $this->app->getBaseUrl(); ?>images/ourshop.jpg" id="about-image" /> </</div>
+                 <span> <p class="aboutinfo"> We are quite new fast growing company focus on selling books. 
+                 We started in 2010 as a small bookshop. 
+                 After two years we changed our location and moved to larger premises. 
+                 We broaden our offer of goods and started to offer audiobooks,  magazines, gift items and products as 
+                 coffee, tea and so on. At the same year we also 
+                 opened coffee in our bookshop so our customers can better enjoy atmosphere of books . <br><br>
+                 Via our website you are available to buy ebooks but if you are more interested 
+                 you can also visit our branch in Bratislava. 
+                 If you have any additional question our personal will be pleased to help you, please let us know via Contact.
+                     
+                     
+                     </p> </span>
+             </p>
+             </div>
              
-            </ul>
-            <!-- HTML for SEARCH BAR -->
-            <div id="tfheader" class="tfheader">
-                <form id="tfnewsearch" method="post" action="_blank">
-                    <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-                </form>
-                <div class="tfclear"></div>
-            </div>
-            
-        </div>
-        
-        <div class="bookshop-second-bg">
-        </div>    
-     
-        <div>
-            <ul id="menu-bar">
-                <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
-                               About
-                            </a>
-                </li>
-                      <li> 
-                          <a href="#">
-                                Books
-                            </a>
-                    <ul>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
-                                All
-                            </a>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
-                               Categories
-                            </a></li>
-                    </ul>
-                <li><a href="#">Discounts</a>
-                    <ul>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
-                                All
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
-                                Categories
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
-                               My books
-                            </a>
-                </li>
-                <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">
-                               Contact
-                            </a>
-                </li>
-                
-            </ul>
-        </div>
-        
-        
+             </span>
     </body>
 </html>

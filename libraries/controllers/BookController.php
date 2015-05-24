@@ -33,7 +33,7 @@ class BookController extends Controller {
         }
     }
     
-    public function actionShowBooks()
+    public function actionShowBooks($type = NULL)
     {
         $category = NULL;
         $bookId = NULL;
@@ -54,6 +54,10 @@ class BookController extends Controller {
         if($category != NULL)
         {
             $catArray = array('book_search' => $category);
+        }
+        else if($type != NULL)
+        {
+            $catArray = $type;
         }
         else
         {
@@ -77,6 +81,16 @@ class BookController extends Controller {
         $this->actionShowBooks();
     }
     
+    public function actionAllDiscountBooks()
+    {
+        $this->actionShowBooks('discount');
+    }
+    
+    public function actionAllFreeBooks()
+    {
+        $this->actionShowBooks('free');
+    }
+    
     public function bookShowLink($result, $page) {
         $userId = isset($_SESSION['logged']) ? $_SESSION['logged'] : User::GetUserId();
         $table = '<div id="searchPanelWraper">';
@@ -90,7 +104,7 @@ class BookController extends Controller {
                                     <img class="searchPanelImage" src="' . $this->app->getBaseUrl() . 'images/books/' . $book['book_image'] . '"/>
                                 </a>
                                 <p class="searchPanelPrice">' . $book['book_price'] . ' €</p>'
-                            . (Basket::IsBookDownloadable($userId, $book['id_book']) ? '
+                                . (Basket::IsBookDownloadableForUser($userId, $book['id_book']) || Basket::IsBookDownloadable($book['id_book']) ? '
                                 <button class="searchPanelButton btn btn-success pull-right" type="submit" >Download</button>'
                                 : '<a href="' . $this->app->getBaseUrl() . 'book/showbooks?category=' . $page . '&id=' . $book['id_book'] . '#showRedirect" class="searchPanelButton btn btn-danger pull-right" role="button" ' . (Basket::IsBookInBasket($userId, $book['id_book']) ? 'disabled' : '') . ' >Add to Basket</a>') . '
                             </div>
@@ -109,9 +123,21 @@ class BookController extends Controller {
 
         // url coming from function bookShowLink
         $route = explode('/', $_GET['r']);
+        $book_id = $route[2];
+        
+        $userId = isset($_SESSION['logged']) ? $_SESSION['logged'] : User::GetUserId();
+        if(strpos($_SERVER['REQUEST_URI'], "=") !== false)
+        {
+            $toBasket = substr($_SERVER['REQUEST_URI'], strpos($_SERVER['REQUEST_URI'], "=") + 1);
+            if($toBasket)
+            {
+                Basket::AddBookToBasket($userId, $book_id);
+            }
+        }
+        
         if (!empty($_GET)) {
             // third[2] element of url is id_book 
-            if ($result = Book::bookDetail($route[2])) {                
+            if ($result = Book::bookDetail($book_id)) {                
                 $datapost['search_result'] = $this->bookShowDetail($result);
                 $this->render('bookSearchResult', $datapost);
             } else {
@@ -125,10 +151,11 @@ class BookController extends Controller {
     }
 
     public function bookShowDetail($book) {
+        $userId = isset($_SESSION['logged']) ? $_SESSION['logged'] : User::GetUserId();
         $table = '
         <table class="table-borderless" style="border-collapse: separate; border-spacing: 3px;">
         <tr>         
-            <td class="bookDetailImage" rowspan="' . (($book['book_discount'] != NULL) ? 7 : 6) . '" ><img height="500" src="' . $this->app->getBaseUrl() . 'images/books/' . $book['book_image'] . '"/></td>
+            <td class="bookDetailImage" rowspan="' . (($book['book_discount'] != NULL) ? 8 : 6) . '" ><img height="500" src="' . $this->app->getBaseUrl() . 'images/books/' . $book['book_image'] . '"/></td>
             <td class="bookDetailData">Category:</td>          
             <td>' . $book['category_name'] . '</td>
         </tr>
@@ -145,18 +172,23 @@ class BookController extends Controller {
             <td>' . $book['book_ISBN'] . '</td>
         </tr>
         <tr>
-            <td class="bookDetailData">Price:</td>           
-            <td>' . $book['book_price'] . '</td>
-        </tr>' . (($book['book_discount'] != NULL) ? '
+            <td class="bookDetailData">' . (($book['book_discount'] != NULL) ? "Original price" : "Price") . ':</td>           
+            <td>' . $book['book_price'] . ' €</td>
+        </tr>'
+        . (($book['book_discount'] != NULL) ? '
+            <tr>
+                <td class="bookDetailData">Discount:</td>           
+                <td>' . $book['book_discount'] . ' %</td>
+            </tr>
+            <tr>
+                <td class="bookDetailData">Sale price:</td>           
+                <td>' . $book['book_price']*(1-$book['book_discount']/100) . ' €</td>
+            </tr>' : "") . '
         <tr>
-            <td class="bookDetailData">Discount:</td>           
-            <td>' . $book['book_discount'] . '</td>
-        </tr>' : "") . '
-        <tr>
-            <td><a href="' . $this->app->getBaseUrl() . '" class="btn btn-info" role="button">Review</a></td>
-            <td class="bookDetailBtn">' . (isset($_SESSION['logged']) ? '
-                <button type="submit" class="btn btn-primary btn-xlg">Download</button>
-                ' : '<a href="' . $this->app->getBaseUrl() . '" class="btn btn-success btn-xlg" role="button">Buy</a>') . '
+            <td class="bookDetailData"><a href="' . $this->app->getBaseUrl() . '" class="btn btn-info" role="button">Review</a></td>
+            <td class="bookDetailBtn">' . (Basket::IsBookDownloadableForUser($userId, $book['id_book']) || Basket::IsBookDownloadable($book['id_book']) ?
+                '<button class="searchPanelButton btn btn-success pull-right" type="submit" >Download</button>'
+                : '<a href="' . $this->app->getBaseUrl() . 'book/detail/' . $book['id_book'] . '?toBasket=true#showRedirect" class="searchPanelButton btn btn-danger pull-right" role="button" ' . (Basket::IsBookInBasket($userId, $book['id_book']) ? 'disabled' : '') . ' >Add to Basket</a>') . '
             </td>
         </tr>
         <tr>

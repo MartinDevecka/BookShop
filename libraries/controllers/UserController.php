@@ -81,10 +81,10 @@ class UserController extends Controller {
         if (isset($_SESSION['logged'])) {           
             unset($_SESSION['logged']);
             $datapost['success'] = 'Logout successful';
-            $this->render('userLogoutForm', $datapost, 'main');
+            $this->render('userLogoutForm', $datapost);
         } else {           
             $datapost['error'] = 'Please, log in';
-            $this->render('userLoginForm', $datapost, 'register');
+            $this->render('userLoginForm', $datapost);
         }                       
     }
     
@@ -106,19 +106,19 @@ class UserController extends Controller {
                         $this->render('adminLogoutForm', $datapost, 'admin');
                     } else {
                         $datapost['error'] = 'E-mail or password non valid, please try again.';
-                        $this->render('adminLoginForm', $datapost, 'register');
+                        $this->render('adminLoginForm', $datapost, 'admin');
                     }
                 } else {
                     $datapost['error'] = 'Non valid format. E-mail (numbers allowed) example: my.2email@gmail.com Password (min 5 characters, min one big letter, special character, number) example: Pas&1';
-                    $this->render('adminLoginForm', $datapost, 'register');
+                    $this->render('adminLoginForm', $datapost, 'admin');
                 }
             } else {
                 $datapost['error'] = 'E-mail and password has to be filled.';
-                $this->render('adminLoginForm', $datapost, 'register');
+                $this->render('adminLoginForm', $datapost, 'admin');
             }
         } else {
             $datapost['success'] = 'Feel free to login.';
-            $this->render('adminLoginForm', $datapost, 'register');
+            $this->render('adminLoginForm', $datapost, 'admin');
         }   
     }
     
@@ -131,10 +131,10 @@ class UserController extends Controller {
         if (isset($_SESSION['admin'])) {           
             unset($_SESSION['admin']);
             $datapost['success'] = 'Logout successful, redirecting to the home page...';
-            $this->render('adminLogoutForm', $datapost, 'main');
+            $this->render('adminLogoutForm', $datapost, 'admin');
         } else {           
             $datapost['error'] = 'Please log in, redirecting to the login form...';
-            $this->render('adminLoginForm', $datapost, 'register');
+            $this->render('adminLoginForm', $datapost, 'admin');
         }                       
     }
 }
