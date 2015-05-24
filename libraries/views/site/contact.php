@@ -63,43 +63,25 @@
   //if "email" variable is not filled out, display the form
   else  { 
 ?>
-
-  <form name="contactform" method="post" >
-            <table width="450px">
-            
-                <tr>
-                    <td valign="top">
-                        <label for="email">Email Address *</label>
-                    </td>
-                    <td valign="top">
-                        <input  type="text" name="email" maxlength="80" size="30" required>
-                    </td>
-                </tr>
-				<tr>
-                    <td valign="top">
-                        <label for="subject">Subject *</label>
-                    </td>
-                    <td valign="top">
-                        <input  type="text" name="subject" maxlength="80" size="30" required>
-                    </td>
-                </tr>
-				
-              
-                <tr>
-                    <td valign="top">
-                        <label for="comments">Message *</label>
-                    </td>
-                    <td valign="top">
-                        <textarea  name="comment" maxlength="1000" cols="25" rows="6" required></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align:center">
-                        <input type="submit" value="Submit">   
-                    </td>
-                </tr>
-            </table>
-        </form>
+<form method="post" name="contactform">
+    <div class="input-group col-lg-4" style="padding-bottom: 5px;">
+        <span class="input-group-addon input-group-addon-custom" id="basic-addon1">Email Address *</span>
+        <input type="email" class="form-control" name="email" placeholder="name@webhosting.com" aria-describedby="basic-addon1" required>
+    </div>
+    <div class="input-group col-lg-4" style="padding-bottom: 5px;">
+        <span class="input-group-addon input-group-addon-custom" id="basic-addon1">Subject *</span>
+        <input type="password" class="form-control" name="password" aria-describedby="basic-addon1" required>
+    </div>
+    <div class="input-group col-lg-4" style="padding-bottom: 5px;">
+        <span class="input-group-addon input-group-addon-custom" id="basic-addon1">Message *</span>
+        <textarea class="form-control" name="comment" required></textarea>
+    </div>
+    <div class="col-lg-4" style="padding-right: 0; padding-bottom: 5px;">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+            <button type="submit" class="btn btn-success">Send</button>
+        </div>
+    </div>
+</form>
   
 <?php
   }

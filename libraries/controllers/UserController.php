@@ -81,10 +81,60 @@ class UserController extends Controller {
         if (isset($_SESSION['logged'])) {           
             unset($_SESSION['logged']);
             $datapost['success'] = 'Logout successful';
-            $this->render('userLogoutForm', $datapost, 'main');
+            $this->render('userLogoutForm', $datapost);
         } else {           
             $datapost['error'] = 'Please, log in';
-            $this->render('userLoginForm', $datapost, 'main');
+            $this->render('userLoginForm', $datapost);
+        }                       
+    }
+    
+    public function actionLoginAdmin() {
+
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
+        $password = isset($_POST['password']) ? $_POST['password'] : null;
+
+        $datapost['error'] = '';
+        $datapost['success'] = '';
+        $datapost['title'] = 'Login';       
+
+        if (!empty($_POST)) {
+            if (!empty($email) && !empty($password)) {
+                if (Helpers::isValidEmail($email) && Helpers::isValidPassword($password)) {
+                    if (User::verifyAdminLogin($_POST)) {
+                        $_SESSION['admin'] = 1;
+                        $datapost['success'] = 'Login successful, redirecting to the admin page... ';
+                        $this->render('adminLogoutForm', $datapost, 'admin');
+                    } else {
+                        $datapost['error'] = 'E-mail or password non valid, please try again.';
+                        $this->render('adminLoginForm', $datapost, 'admin');
+                    }
+                } else {
+                    $datapost['error'] = 'Non valid format. E-mail (numbers allowed) example: my.2email@gmail.com Password (min 5 characters, min one big letter, special character, number) example: Pas&1';
+                    $this->render('adminLoginForm', $datapost, 'admin');
+                }
+            } else {
+                $datapost['error'] = 'E-mail and password has to be filled.';
+                $this->render('adminLoginForm', $datapost, 'admin');
+            }
+        } else {
+            $datapost['success'] = 'Feel free to login.';
+            $this->render('adminLoginForm', $datapost, 'admin');
+        }   
+    }
+    
+    public function actionLogoutAdmin() {      
+
+        $datapost['error'] = '';
+        $datapost['success'] = '';   
+        $datapost['title'] = 'Login';
+              
+        if (isset($_SESSION['admin'])) {           
+            unset($_SESSION['admin']);
+            $datapost['success'] = 'Logout successful, redirecting to the home page...';
+            $this->render('adminLogoutForm', $datapost, 'admin');
+        } else {           
+            $datapost['error'] = 'Please log in, redirecting to the login form...';
+            $this->render('adminLoginForm', $datapost, 'admin');
         }                       
     }
 }

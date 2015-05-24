@@ -38,16 +38,13 @@ class Basket {
 
     public static function SaveOrder($userId, $order_payment_type, $totalPrice)
     {
-        $insertOrder = "INSERT INTO orders(id_user, order_payment_type, order_paid) VALUES "
-                . "(" . $userId . ", '" . $order_payment_type . "', 0)";
-        $order_id = (DB::getInstance()->query("SELECT MAX(id_order) FROM orders")->fetch_row()[0]) + 1;
-        $insertOrderDetails = "INSERT INTO order_details(id_order, order_details_price) VALUES "
-                . "(" . $order_id . ", " . $totalPrice .")";
+        $insertOrder = "INSERT INTO orders(id_user, order_payment_type, order_paid, order_price) VALUES "
+                . "(" . $userId . ", '" . $order_payment_type . "', 0, " . $totalPrice .")";
         $unsetBasketVisibility = "UPDATE basket_items
                                 SET basket_item_visibility=0
                                 WHERE basket_item_visibility = 1 AND id_user = " . $userId;
         
-        if(DB::getInstance()->query($insertOrder) && DB::getInstance()->query($insertOrderDetails) && DB::getInstance()->query($unsetBasketVisibility))
+        if(DB::getInstance()->query($insertOrder) && DB::getInstance()->query($unsetBasketVisibility))
         {
             return true;
         }
@@ -78,9 +75,23 @@ class Basket {
         return false;
     }
     
-    public static function IsBookDownloadable($userId, $bookId)
+    public static function IsBookDownloadable($bookId)
     {
-        $bookInBasket = "SELECT id_books_paid FROM basket_items WHERE id_user=" . $userId . " AND id_book=" . $bookId . "AND books_visibility=1";
+        $book = "SELECT id_books_paid FROM books_paid WHERE id_user=99 AND id_book=" . $bookId . " AND books_visibility=1";
+        if($result = DB::getInstance()->query($book))
+        {
+            if($result->num_rows > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static function IsBookDownloadableForUser($userId, $bookId)
+    {
+        $bookInBasket = "SELECT id_books_paid FROM books_paid WHERE id_user=" . $userId . " AND id_book=" . $bookId . " AND books_visibility=1";
         if($result = DB::getInstance()->query($bookInBasket))
         {
             if($result->num_rows > 0)

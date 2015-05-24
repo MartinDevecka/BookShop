@@ -22,18 +22,27 @@ class Book {
                 . "FROM books a "
                 . "JOIN authors b ON a.id_author=b.id_author "
                 . "JOIN categories c ON a.id_category=c.id_category ";
-
-        if ($data != NULL) {
-            extract($data);
-            $search_book .= "WHERE a.book_title LIKE '%" . $book_search . "%' "
-                    . "OR a.book_subject LIKE '%" . $book_search . "%' "
-                    . "OR a.book_ISBN LIKE '%" . $book_search . "%' "
-                    . "OR b.author_name LIKE '%" . $book_search . "%' "
-                    . "OR c.category_name LIKE '%" . $book_search . "%' ";
-        }
-
-        $search_book .= "GROUP BY a.id_book "
-                . "ORDER BY a.book_title;";
+                
+                if($data == 'free')
+                {
+                    $search_book .= "JOIN books_paid bp ON a.id_book = bp.id_book WHERE bp.id_user=99 AND bp.books_visibility=1 ";
+                }
+                else if($data == 'discount')
+                {
+                    $search_book .= "WHERE a.book_discount IS NOT NULL ";
+                }
+                else if($data != NULL)
+                {
+                    extract($data);
+                    $search_book .= "WHERE a.book_title LIKE '%" . $book_search . "%' "
+                            . "OR a.book_subject LIKE '%" . $book_search . "%' "
+                            . "OR a.book_ISBN LIKE '%" . $book_search . "%' "
+                            . "OR b.author_name LIKE '%" . $book_search . "%' "
+                            . "OR c.category_name LIKE '%" . $book_search . "%' ";
+                }
+                
+                $search_book .= "GROUP BY a.id_book "
+                                . "ORDER BY a.book_title;";
 
         if ($result = DB::getInstance()->query($search_book)) {
             if ($result->num_rows > 0) {
