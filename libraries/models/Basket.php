@@ -30,7 +30,7 @@ class Basket {
 
     public static function RemoveAllBasket($userId) {
         $removeBasket = 'DELETE FROM  WHERE id_user = ' . $userId;
-        if ($result = DB::getInstbasket_itemsance()->query($removeBasket)) {
+        if ($result = DB::getInstance()->query($removeBasket)) {
             return $result;
         }
         return false;

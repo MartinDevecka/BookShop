@@ -9,7 +9,7 @@ class Admin {
 
         extract($data);
 
-        if ($email == "devemart@gmail.com" && $password == "Admin@123") {
+        if ($email == "example03@gmail.com" && $password == "Admin@123") {
             $verify_user = "SELECT id_user FROM users WHERE user_email = '" . $email . "' AND user_password = MD5('" . $password . "')";
             if ($result = DB::getInstance()->query($verify_user)) {
                 if ($result->num_rows > 0) {

@@ -143,9 +143,20 @@ class BookController extends Controller {
     }
 
     public function bookShowDetail($book) {
+        $reviews = Review::SelectBookReviews($book['id_book']);
+        $displayedReviews = '';
+        if($reviews != false)
+        {
+            foreach ($reviews as $review) {
+                $displayedReviews .= '<tr style="border-top: 1px solid black;"><td>User: </td><td>' . User::GetUserName($review['id_user']) . '</td><td>Date: </td><td>' . $review['book_review_date'] . '</td></tr>'
+                        . '<tr><td>Rate: </td><td>' . $review['book_review_rate'] . '</td></tr>'
+                        . '<tr><td>Review:</td><td>' . $review['book_review'] . '</td></tr>';
+            }
+        }
+        
         $userId = isset($_SESSION['logged']) ? $_SESSION['logged'] : User::GetUserId();
         $table = '
-        <table class="table-borderless" style="border-collapse: separate; border-spacing: 3px;">
+        <table class="table-borderless" style=" border-spacing: 3px;">
         <tr>         
             <td class="bookDetailImage" rowspan="' . (($book['book_discount'] != NULL) ? 8 : 6) . '" ><img height="500" src="' . $this->app->getBaseUrl() . 'images/books/' . $book['book_image'] . '"/></td>
             <td class="bookDetailData">Category:</td>          
@@ -176,8 +187,15 @@ class BookController extends Controller {
                 <td class="bookDetailData">Sale price:</td>           
                 <td>' . $book['book_price']*(1-$book['book_discount']/100) . ' €</td>
             </tr>' : "") . '
-        <tr>
-            <td class="bookDetailData"><a href="' . $this->app->getBaseUrl() . '" class="btn btn-info" role="button">Review</a></td>
+        <tr>      
+            <td class="bookDetailData">
+            <form method="post" action="' . $this->app->getBaseUrl() . 'book/newreview" enctype="multipart/form-data">
+                <input type="hidden" name="id_book" value="' . $book['id_book']  .'" />
+                <input type="hidden" name="id_user" value="' . ($userId != NULL ? $userId : '') .'" />
+                <button class="searchPanelButton btn btn-success pull-right" type="submit" >Review</button>
+            </form>
+            </td>
+                
             <td class="bookDetailBtn">' . (Basket::IsBookDownloadableForUser($userId, $book['id_book']) || Basket::IsBookDownloadable($book['id_book']) ?
                 '<button class="searchPanelButton btn btn-success pull-right" type="submit" >Download</button>'
                 : '<a href="' . $this->app->getBaseUrl() . 'book/detail/' . $book['id_book'] . '?toBasket=true#showRedirect" class="searchPanelButton btn btn-danger pull-right" role="button" ' . (Basket::IsBookInBasket($userId, $book['id_book']) ? 'disabled' : '') . ' >Add to Basket</a>') . '
@@ -186,11 +204,9 @@ class BookController extends Controller {
         <tr>
             <td>Summary:</td>           
             <td colspan="2">' . $book['book_subject'] . '</td>
-        </tr>
-        <tr>
+        </tr>' . $displayedReviews .
+        '</table>';
         
-        </tr>
-    </table>';
         return $table;
     }
 
@@ -207,7 +223,7 @@ class BookController extends Controller {
             $this->render('bookAddReview', $datapost);
         } else {
             $datapost['error'] = 'Can not add review for this book or from this user.';
-            $this->render('adminAddReview', $datapost, 'admin');
+            $this->render('bookAddReview', $datapost);
         }
     }
 

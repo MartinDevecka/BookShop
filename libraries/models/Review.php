@@ -64,6 +64,27 @@ class Review {
             return false;
         }
     }
+    
+    public static function SelectBookReviews($id_book) {
+
+        $review_select = "SELECT "
+                . "id_user, "
+                . "book_review, "
+                . "book_review_date, "
+                . "book_review_rate "            
+                . "FROM books_reviews "
+                . "WHERE id_book='" . $id_book . "';";
+
+        if ($result = DB::getInstance()->query($review_select)) {
+            if ($result->num_rows > 0) {
+                return $result->fetch_all(MYSQLI_ASSOC);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 
     public static function reviewEdit($data) {
 

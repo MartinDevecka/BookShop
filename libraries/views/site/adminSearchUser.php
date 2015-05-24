@@ -15,7 +15,7 @@ if (!empty($data['success'])) {
         }
     }
 </script>
-<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/finduser">
+<form method="post" action="<?= $this->app->getBaseUrl(); ?>admin/finduser">
     <table class="table-borderless" style="border-collapse: separate; border-spacing: 3px;">
         <thead>
             <tr>

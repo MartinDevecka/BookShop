@@ -7,7 +7,7 @@ if (!empty($data['success'])) {
 }   
 
 ?>
-<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/addauthor" enctype="multipart/form-data"> 
+<form method="post" action="<?= $this->app->getBaseUrl(); ?>admin/addauthor" enctype="multipart/form-data"> 
     <table class="table-borderless" style="border-collapse: separate; border-spacing: 3px;">
         <tr>
             <td width="30%">
