@@ -31,7 +31,7 @@ class AdminController extends Controller {
             $datapost['success'] = 'Book was added successfuly...';
             $this->render('adminAddBook', $datapost, 'admin');
         } else {
-            $datapost['error'] = 'Add book failed, try insert via database...';
+            $datapost['success'] = 'Add book here or try insert via database...';
             $this->render('adminAddBook', $datapost, 'admin');
         }
     }
@@ -55,6 +55,8 @@ class AdminController extends Controller {
     }
 
     public function actionEditBook() {
+        
+        $book_select_all = Admin::bookSelectAll();
 
         $categories = Admin::categorySelectCombo();
         $select_category = '<select name="category">';
@@ -74,23 +76,26 @@ class AdminController extends Controller {
         $datapost['success'] = '';
         $datapost['title'] = 'Edit Book'; 
         $datapost['categories'] = $select_category;
-        $datapost['authors'] = $select_author;         
+        $datapost['authors'] = $select_author;  
+        //$datapost['book_select_all'] = $book_select_all;
+        $datapost['book'] = ''; 
 
         // url coming from form
         $route = explode('/', $_GET['r']);
         if (!empty($_GET)) {
             // third[2] element of url is id_book 
-            if (Admin::bookSelect($route[2])) {
-//                Admin::bookEdit($data)
+            if ($result = Admin::bookSelect($route[2])) {
+                $datapost['book'] = $result; 
+                //Admin::bookEdit($data);
                 $datapost['success'] = 'Search successful, redirecting to book edit form... ';               
                 $this->render('adminEditBookForm', $datapost, 'admin');
             } else {
-                $datapost['error'] = 'Edit error...';
-                $this->render('adminEditBook', $datapost, 'admin');
+                //$datapost['error'] = 'Edit error...';
+                $this->render('adminEditBookForm', $datapost, 'admin');
             }
         } else {
-            $datapost['error'] = 'Edit error...';
-            $this->render('adminEditBook', $datapost, 'admin');
+            //$datapost['error'] = 'Edit error...';
+            $this->render('adminEditBookForm', $datapost, 'admin');
         }
     }      
 
