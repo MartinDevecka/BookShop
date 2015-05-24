@@ -6,7 +6,7 @@ if (!empty($data['success'])) {
     echo "<div class='alert alert-success' role='alert'>" . $data['success'] . "</div>";
 }
 ?>
-<form method="post" action="<?= $this->app->getBaseUrl(); ?>/user/loginadmin"> 
+<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/loginadmin"> 
     <table class="table-borderless" style="border-collapse: separate; border-spacing: 3px;">
         <tr>
             <td width="30%">

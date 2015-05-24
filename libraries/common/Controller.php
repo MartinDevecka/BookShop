@@ -40,6 +40,13 @@ class Controller {
         $content = ob_get_clean();
         include(__DIR__ . '/../views/layouts/' . $datalayout . '.php');
     }
+    
+    public function renderBook($book_id) {
+        ob_start();
+        $data = $data;
+        include(__DIR__ . '/../views/site/' . $template . '.php');
+        $content = ob_get_clean();
+        include(__DIR__ . '/../views/layouts/' . $datalayout . '.php');
+    }
 }
 
-?>

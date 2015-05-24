@@ -79,7 +79,7 @@ if (!empty($data['success'])) {
                 Path:
             </td>           
             <td>    
-                <input class="form-control" type="text" name="path"/> 
+                <input class="form-control" type="text" name="file"/> 
                 <!--<input class="btn btn-success" type="file" name="path" id="path" value="Add book"/>--> 
             </td>
         </tr>

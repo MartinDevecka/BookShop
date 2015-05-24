@@ -5,13 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Bootstrap 101 Template</title>
+        <title>Admin</title>
 
         <!-- Bootstrap -->
         <link href="<?= $this->app->getBaseUrl(); ?>web/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?= $this->app->getBaseUrl(); ?>web/css/site.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/bootstrap.min.js"></script>
+        <script src="<?= $this->app->getBaseUrl(); ?>web/js/bootstrap.min.js"></script>         
         <script type="text/javascript" src="<?= $this->app->getBaseUrl(); ?>web/js/custom.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,42 +35,65 @@
                     <a class="navbar-brand" href="<?= $this->app->getBaseUrl(); ?>">onlinelibrary.com</a>
                 </div>-->
                 <!-- Collect the nav links, forms, and other content for toggling -->
+                
+                                  
                 <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="nav navbar-nav">                                  
-                        <li class="dropdown open">
-                            <a class="dropdown-toggle" aria-expanded="false" data-toggle="dropdown">Book<b class="caret"></b></a>                          
-                            <ul class="dropdown-menu dropdown-menu-arrow" role="menu">
+                    <ul class="nav navbar-nav">   
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Book<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
                                 <li><a href="<?= $this->app->getBaseUrl(); ?>admin/addbook">Add</a></li>
-                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/findbook">Edit/Delete</a></li>                                  
+                                <li class="divider"></li>
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/findbook">Edit/Delete</a></li>                      
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Category<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/addcategory">Add</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/findcategory">Edit/Delete</a></li>                      
+                            </ul>
+                        </li> 
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Author<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/addauthor">Add</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/findauthor">Edit/Delete</a></li>                          
+                            </ul>
+                        </li>  
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/adduser">Add</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/finduser">Edit/Delete</a></li>                          
+                            </ul>
+                        </li>    
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Order<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/addorder">Add</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/findorder">Edit/Delete</a></li>                          
                             </ul>
                         </li>                          
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Review<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/addreview">Add</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?= $this->app->getBaseUrl(); ?>admin/findreview">Edit/Delete</a></li>                          
+                            </ul>
+                        </li>  
                         <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/offers">
-                                Category
+                            <a href="<?= $this->app->getBaseUrl(); ?>admin/loginadmin">
+                                Log In
                             </a>
-                        </li>
+                        </li>  
                         <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/contact">
-                                User
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
-                                Review
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
-                                Order
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>search/basket">
-                                OrderDetail
-                            </a>
-                        </li>          
-                        <li>
-                            <a href="<?= $this->app->getBaseUrl(); ?>user/logoutadmin">
+                            <a href="<?= $this->app->getBaseUrl(); ?>admin/logoutadmin">
                                 Log Out
                             </a>
                         </li>                        
@@ -86,7 +109,7 @@
                                 </div>
                             </form>                        
                         </div>                      
-                    </ul>
+                    </ul>                                                    
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -102,8 +125,7 @@
             <div class="row">
                 <?= $content; ?>
             </div>
-        </div> 
-        <script src="<?= $this->app->getBaseUrl(); ?>web/js/bootstrap.min.js"></script>
+        </div>        
     </body>
 </html>
 

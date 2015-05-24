@@ -76,6 +76,7 @@
                             <a href="<?= $this->app->getBaseUrl(); ?>book/categories#showRedirect" >Categories</a>
                         </li>
                     </ul>
+                </li>
                 <li><a href="#">Discounts</a>
                     <ul>
                         <li>
@@ -90,7 +91,7 @@
                     <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">My books</a>
                 </li>
                 <li>
-                    <a href="<?= $this->app->getBaseUrl(); ?>search/allbooks">Contact</a>
+                    <a href="<?= $this->app->getBaseUrl(); ?>site/contact">Contact</a>
                 </li>
 
             </ul>

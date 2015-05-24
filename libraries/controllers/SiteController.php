@@ -12,6 +12,11 @@ class SiteController extends Controller {
     {
         $this->render('about');
     }
+    
+    public function actionContact()
+    {
+        $this->render('contact');
+    }
 }
 
 ?>

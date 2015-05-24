@@ -7,24 +7,16 @@ if (!empty($data['success'])) {
 }   
 
 ?>
-<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/addcategory" enctype="multipart/form-data"> 
+<form method="post" action="<?= $this->app->getBaseUrl(); ?>/admin/addauthor" enctype="multipart/form-data"> 
     <table class="table-borderless" style="border-collapse: separate; border-spacing: 3px;">
         <tr>
             <td width="30%">
-                Category name:
+                Author name:
             </td>                   
             <td>
-                <input class="form-control" type="text" name="category_name"/> 
+                <input class="form-control" type="text" name="author_name"/> 
             </td>                                    
-        </tr>
-        <tr>
-            <td width="30%">
-                Category image:
-            </td>          
-            <td>
-                <input class="form-control" type="text" name="category_image"/>
-            </td>
-        </tr>       
+        </tr>            
         <tr></tr>
         <tr></tr>
         <tr></tr>
@@ -39,6 +31,8 @@ if (!empty($data['success'])) {
         </tr>
     </table>               
 </form>
+
+
 
 
 
